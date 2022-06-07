@@ -1,69 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'dart:math';
 
 void main() {
-  AudioCache player = AudioCache(prefix: 'assets/');
-
-  runApp(
-    MaterialApp(
+  runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.teal,
-        // appBar: AppBar(
-        //   title: Text("Je suis Riche"),
-        //   centerTitle: true,
-        // ),
-        body: SafeArea(child: Container(height: 200, child: DicePage())),
-      ),
-    ),
-  );
+        backgroundColor: Color.fromRGBO(3, 169, 244, 100),
+        appBar: AppBar(
+          title: Text("Ask me anything"),
+          centerTitle: true,
+          backgroundColor: Color.fromRGBO(33, 150, 243, 100),
+        ),
+        body: ballApp(),
+      )));
 }
 
-// class DicePage extends StatelessWidget {
-//   const DicePage({
-//     Key? key,
-//     required this.leftDiceNumber,
-//   }) : super(key: key);
-//
-//   final int leftDiceNumber;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//         child: TextButton(
-//       onPressed: () {},
-//       child: Image.asset("img/$leftDiceNumber.png"),
-//     ));
-//   }
-// }
-
-class DicePage extends StatefulWidget {
-  const DicePage({
-    Key? key,
-  }) : super(key: key);
+class ballApp extends StatefulWidget {
+  const ballApp({Key? key}) : super(key: key);
 
   @override
-  State<DicePage> createState() => _DicePageState();
+  State<ballApp> createState() => _ballAppState();
 }
 
-class _DicePageState extends State<DicePage> {
-  int d1 = Random().nextInt(6);
-  int d2 = 2;
+class _ballAppState extends State<ballApp> {
+  int ba1 = Random().nextInt(5) + 1;
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        TextButton(
-          onPressed: () {
-            setState(() {
-              Image.asset("img/dice$d1.png");
-            });
-          },
-          child: Image.asset("img/dice$d1.png"),
-        ),
         Expanded(
-          child: Image.asset("img/dice$d2.png"),
-        )
+            child: TextButton(
+                onPressed: () {
+                  setState(() {
+                    ba1 = Random().nextInt(5) + 1;
+                  });
+                },
+                child: Image.asset("img/ball$ba1.png"))),
       ],
     );
   }
